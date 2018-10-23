@@ -36,7 +36,7 @@ public class WebActivity extends BaseActivity {
                 .setAgentWebParent(llContent, new LinearLayout.LayoutParams(-1, -1))
                 .useDefaultIndicator()
                 .setMainFrameErrorView(R.layout.item_fail,-1)
-                . setSecurityType(AgentWeb.SecurityType.STRICT_CHECK)
+                .setSecurityType(AgentWeb.SecurityType.STRICT_CHECK)
                 .interceptUnkownUrl()
                 .createAgentWeb()
                 .ready()

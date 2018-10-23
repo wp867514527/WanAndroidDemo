@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 
 import com.alibaba.android.arouter.facade.annotation.Autowired;
 import com.alibaba.android.arouter.facade.annotation.Route;
@@ -25,21 +26,17 @@ import butterknife.ButterKnife;
 
 @Route(path = "/zuo/treeActivity")
 public class TreeActivity extends BaseActivity {
-    /* @Autowired
-     Tree.DataBean dataBean;*/
-
     @Autowired
-    int pos;
-    @Autowired
-    List<String> mTitle;
+    Tree.DataBean dataBean;
     @BindView(R.id.tablayout)
-    SlidingTabLayout tablayout;
+    SlidingTabLayout tablacyout;
     @BindView(R.id.viewpager)
     SlideViewPager viewpager;
     @BindView(R.id.toolbar)
     Toolbar toolbar;
-   // private List<String> mTitle = new ArrayList<>();
+     private List<String> mTitle = new ArrayList<>();
     protected List<Integer> ids = new ArrayList<>();
+    private String TAG = "TreeActivity";
 
     @Override
     public int getLayoutId() {
@@ -53,18 +50,20 @@ public class TreeActivity extends BaseActivity {
 
     @Override
     public void init() {
-        //Tree.DataBean dataBean = itemDatas.get(pos);
-        System.out.println(mTitle);
-       /* toolbar.setTitle(dataBean.getName());
-        for (Tree.DataBean.ChildrenBean childrenBean : dataBean.getChildren()) {
-            mTitle.add(childrenBean.getName());
-            ids.add(childrenBean.getId());
+        // String e = getIntent().getStringExtra("dataBean");
+        if (dataBean == null) {
+            Log.d(TAG, "dataBean==null");
+            return;
         }
-
-        TreeAdapter treeAdapter = new TreeAdapter(getSupportFragmentManager());
-        viewpager.setAdapter(treeAdapter);
-        String[] titles = (String[]) mTitle.toArray();
-        tablayout.setViewPager(viewpager, titles);*/
+        toolbar.setTitle(dataBean.getName());
+        List<Tree.DataBean.ChildrenBean> children = dataBean.getChildren();
+        for (Tree.DataBean.ChildrenBean child : children) {
+            mTitle.add(child.getName());
+            ids.add(child.getId());
+        }
+        String[] strings = mTitle.toArray(new String[mTitle.size()]);
+        viewpager.setAdapter(new TreeAdapter(getSupportFragmentManager()));
+        tablacyout.setViewPager(viewpager, strings);
     }
 
 

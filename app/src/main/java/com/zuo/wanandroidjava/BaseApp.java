@@ -13,7 +13,7 @@ public class BaseApp extends Application {
     public void onCreate() {
         super.onCreate();
         setInstance(this);
-        ARouter.openLog();
+        ARouter.openDebug();
         ARouter.openLog();
         ARouter.init(this);
 

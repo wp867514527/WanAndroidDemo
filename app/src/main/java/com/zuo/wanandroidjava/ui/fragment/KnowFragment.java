@@ -8,12 +8,14 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.alibaba.fastjson.JSON;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.zuo.wanandroidjava.R;
 import com.zuo.wanandroidjava.base.BaseFragment;
 import com.zuo.wanandroidjava.bean.Tree;
 import com.zuo.wanandroidjava.presenter.contract.KnowContract;
 import com.zuo.wanandroidjava.presenter.KnowPresenter;
+import com.zuo.wanandroidjava.ui.act.MsgBean;
 import com.zuo.wanandroidjava.ui.adapter.KnowAdapter;
 
 import java.util.ArrayList;
@@ -58,6 +60,9 @@ public class KnowFragment extends BaseFragment<KnowPresenter> implements KnowCon
         knowAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+               /* MsgBean msgBean = new MsgBean("dadas",11);
+                String json = JSON.toJSONString(msgBean);
+                System.out.println(json);*/
                 Tree.DataBean dataBean = itemDatas.get(position);
                 List<String> mTitle = new ArrayList<>();
                 List<Integer> ids = new ArrayList<>();
@@ -65,9 +70,10 @@ public class KnowFragment extends BaseFragment<KnowPresenter> implements KnowCon
                     mTitle.add(childrenBean.getName());
                     ids.add(childrenBean.getId());
                 }
+
                 ARouter.getInstance().build("/zuo/treeActivity")
-                        .withInt("pos",position)
-                        .withObject("datas",mTitle)
+                        //.withInt("pos",position)
+                        .withObject("dataBean",dataBean)
                         .navigation();
 
             }

@@ -6,6 +6,7 @@ import com.zuo.wanandroidjava.bean.Data;
 import com.zuo.wanandroidjava.bean.ProjectList;
 import com.zuo.wanandroidjava.bean.ProjectTab;
 import com.zuo.wanandroidjava.bean.Tree;
+import com.zuo.wanandroidjava.bean.TreeList;
 
 import java.util.List;
 
@@ -50,5 +51,9 @@ public class HttpHelper {
     public Observable<ProjectList> getProjectList(int page, int id ) {
 
         return httpApi.getProjectList(page, id).compose(mainThread());
+    }
+
+    public Observable<TreeList> getTreeList(int page, int cid) {
+        return httpApi.getTreeList(page, cid).compose(mainThread());
     }
 }

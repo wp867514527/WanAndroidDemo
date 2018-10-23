@@ -6,6 +6,7 @@ import com.zuo.wanandroidjava.bean.Data;
 import com.zuo.wanandroidjava.bean.ProjectList;
 import com.zuo.wanandroidjava.bean.ProjectTab;
 import com.zuo.wanandroidjava.bean.Tree;
+import com.zuo.wanandroidjava.bean.TreeList;
 
 import java.util.List;
 
@@ -33,8 +34,12 @@ public interface HttpApi {
 
    // http://www.wanandroid.com/project/list/1/json?cid=294
     // 项目列表数据
-    @GET("project/list/{page}/json")
+    @GET("/project/list/{page}/json")
     Observable<ProjectList> getProjectList(@Path("page") int page,@Query("cid") int id);
+
+    //体系列表数据 http://www.wanandroid.com/article/list/0/json?cid=60
+    @GET("/article/list/{page}/json")
+    Observable<TreeList> getTreeList(@Path("page")int page,@Query("cid") int cid);
 
 
 }

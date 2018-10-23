@@ -25,8 +25,8 @@ public abstract class BaseFragment<P extends BasePresenter> extends SupportFragm
     protected P presenter;
     private boolean initFinish;
     private View rootView;
-    @BindView(R.id.multistateview)
-    MultiStateView multistateview;
+    private MultiStateView multiStateView;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -60,14 +60,14 @@ public abstract class BaseFragment<P extends BasePresenter> extends SupportFragm
             getLifecycle().addObserver(presenter);
             presenter.attachView(this);
         }
-        initMultiStateView();
+        initMultiStateView(view);
     }
-
-    private void initMultiStateView() {
-        if (multistateview == null) {
+    private void initMultiStateView(View view) {
+        multiStateView = view.findViewById(R.id.multistateview);
+        if (multiStateView == null) {
             return;
         }
-        multistateview.setEmptyResource(R.layout.item_empty)
+        multiStateView.setEmptyResource(R.layout.item_empty)
                 .setLoadingResource(R.layout.item_loading)
                 .setFailResource(R.layout.item_fail)
                 .build();
@@ -77,36 +77,38 @@ public abstract class BaseFragment<P extends BasePresenter> extends SupportFragm
     public boolean isInitFinish() {
         return initFinish;
     }
+
     protected int getStatusBarHeight() {
         int resourceId = getResources().getIdentifier("status_bar_height", "dimen", "android");
         return getResources().getDimensionPixelSize(resourceId);
 
     }
+
     @Override
     public void showLoadingView() {
-        if (multistateview!=null) {
-            multistateview.showLoadingView();
+        if (multiStateView != null) {
+            multiStateView.showLoadingView();
         }
     }
 
     @Override
     public void showEmptyView() {
-        if (multistateview!=null) {
-            multistateview.showEmptyView();
+        if (multiStateView != null) {
+            multiStateView.showEmptyView();
         }
     }
 
     @Override
     public void showErrorView() {
-        if (multistateview!=null) {
-            multistateview.showErrorView();
+        if (multiStateView != null) {
+            multiStateView.showErrorView();
         }
     }
 
     @Override
     public void showContentView() {
-        if (multistateview!=null) {
-            multistateview.showContent();
+        if (multiStateView != null) {
+            multiStateView.showContent();
         }
     }
 }

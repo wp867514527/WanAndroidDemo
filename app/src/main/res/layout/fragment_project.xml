@@ -39,7 +39,7 @@
                 android:layout_height="45dp"
                 app:tl_indicator_height="@dimen/dp_4"
                 app:tl_indicator_corner_radius="@dimen/dp_2"
-                app:tl_indicator_color="@color/colorPrimary">
+                app:tl_indicator_color="@color/white">
 
 
             </com.flyco.tablayout.SlidingTabLayout>

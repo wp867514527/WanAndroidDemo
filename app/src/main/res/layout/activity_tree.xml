@@ -8,12 +8,14 @@
     tools:context=".ui.act.TreeActivity">
 
     <android.support.design.widget.AppBarLayout
+        android:id="@+id/appbarlayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
+            app:layout_scrollFlags="scroll|snap"
             android:theme="@style/ThemeOverlay.AppCompat.Dark"
             android:layout_height="?attr/actionBarSize">
 
@@ -22,8 +24,8 @@
         <com.flyco.tablayout.SlidingTabLayout
             android:id="@+id/tablayout"
             android:layout_width="match_parent"
-            app:tl_textSelectColor="@color/colorPrimary"
-            app:tl_textUnselectColor="#333333"
+            app:tl_textSelectColor="@color/white"
+            app:tl_textUnselectColor="#f2f2f2"
             android:layout_height="45dp">
 
         </com.flyco.tablayout.SlidingTabLayout>
