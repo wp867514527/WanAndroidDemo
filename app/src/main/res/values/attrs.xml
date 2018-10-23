@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="SlideViewPager">
+        <attr name="svp_slide" format="boolean"></attr>
+
+
+    </declare-styleable>
+
+    <declare-styleable name="MultiStateView">
+        <attr name="msv_emptyView" format="reference"></attr>
+        <attr name="msv_loadingView" format="reference"></attr>
+        <attr name="msv_failView" format="reference"></attr>
+        <attr name="msv_viewState" format="enum">
+            <enum name="content" value="1000"></enum>
+            <enum name="loading" value="1001"></enum>
+            <enum name="empty" value="1002"></enum>
+            <enum name="fail" value="1003"></enum>
+
+        </attr>
+
+    </declare-styleable>
+
+</resources>

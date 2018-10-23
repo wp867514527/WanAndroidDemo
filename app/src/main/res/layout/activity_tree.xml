@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.act.TreeActivity">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark"
+            android:layout_height="?attr/actionBarSize">
+
+        </android.support.v7.widget.Toolbar>
+
+        <com.flyco.tablayout.SlidingTabLayout
+            android:id="@+id/tablayout"
+            android:layout_width="match_parent"
+            app:tl_textSelectColor="@color/colorPrimary"
+            app:tl_textUnselectColor="#333333"
+            android:layout_height="45dp">
+
+        </com.flyco.tablayout.SlidingTabLayout>
+
+
+    </android.support.design.widget.AppBarLayout>
+    <com.zuo.wanandroidjava.weight.SlideViewPager
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:id="@+id/viewpager"
+        app:svp_slide="true"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </com.zuo.wanandroidjava.weight.SlideViewPager>
+
+
+
+
+</android.support.design.widget.CoordinatorLayout>
