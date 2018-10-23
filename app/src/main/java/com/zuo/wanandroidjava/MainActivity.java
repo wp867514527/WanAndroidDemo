@@ -60,10 +60,10 @@ public class MainActivity extends BaseActivity {
             public void onPageSelected(int i) {
                 if (i == 0) {
                     HomeFragment fragment = (HomeFragment) fragments.get(0);
+                    StatusBarUtil.setTransparentForImageViewInFragment(MainActivity.this,null);
                     if (fragment.isLight) {
                         StatusBarUtil.setLightMode(MainActivity.this);
                     }
-                    StatusBarUtil.setTransparentForImageViewInFragment(MainActivity.this,null);
                 }else{
                     StatusBarUtil.setColor(MainActivity.this, getResources().getColor(R.color.colorPrimary));
                     StatusBarUtil.setDarkMode(MainActivity.this);
