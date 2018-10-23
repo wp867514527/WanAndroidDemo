@@ -62,10 +62,8 @@ public class HomeFragment extends BaseFragment<HomePresenter> implements HomeCon
 
     @Override
     public void initInject() {
+        //上传测试哈哈哈哈哈哈哈哈啊哈哈哈哈
         getComponent().inject(this);
-
-
-
     }
 
     @Override
