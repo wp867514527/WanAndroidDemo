@@ -13,6 +13,9 @@
         <item name="windowActionBar">false</item>
      <!--   <item name="android:windowFullscreen">true</item>-->
     </style>
-
+    <!--Toolbar标题文字大小-->
+    <style name="Toolbar.TitleText" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:textSize">15sp</item>
+    </style>
 
 </resources>

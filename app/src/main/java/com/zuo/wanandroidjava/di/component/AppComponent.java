@@ -1,7 +1,7 @@
-package com.zuo.wanandroidjava.da.component;
+package com.zuo.wanandroidjava.di.component;
 
-import com.zuo.wanandroidjava.da.module.AppModule;
-import com.zuo.wanandroidjava.da.module.HttpModule;
+import com.zuo.wanandroidjava.di.module.AppModule;
+import com.zuo.wanandroidjava.di.module.HttpModule;
 import com.zuo.wanandroidjava.model.api.HttpHelper;
 
 import javax.inject.Singleton;

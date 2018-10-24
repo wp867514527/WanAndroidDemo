@@ -24,7 +24,8 @@
             android:name=".ui.act.WebActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait" />
-        <activity android:name=".ui.act.TreeActivity"></activity>
+        <activity android:name=".ui.act.TreeActivity" />
+        <activity android:name=".ui.act.SearchActivity"></activity>
     </application>
 
 </manifest>

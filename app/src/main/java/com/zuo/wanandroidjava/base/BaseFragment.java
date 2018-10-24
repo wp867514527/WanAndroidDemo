@@ -9,14 +9,13 @@ import android.view.ViewGroup;
 
 import com.zuo.wanandroidjava.BaseApp;
 import com.zuo.wanandroidjava.R;
-import com.zuo.wanandroidjava.da.component.DaggerFragmentComponent;
-import com.zuo.wanandroidjava.da.component.FragmentComponent;
-import com.zuo.wanandroidjava.da.module.FragmentModule;
+import com.zuo.wanandroidjava.di.component.DaggerFragmentComponent;
+import com.zuo.wanandroidjava.di.component.FragmentComponent;
+import com.zuo.wanandroidjava.di.module.FragmentModule;
 import com.zuo.wanandroidjava.weight.MultiStateView;
 
 import javax.inject.Inject;
 
-import butterknife.BindView;
 import butterknife.ButterKnife;
 import me.yokeyword.fragmentation.SupportFragment;
 

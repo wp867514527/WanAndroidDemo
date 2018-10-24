@@ -2,7 +2,7 @@ package com.zuo.wanandroidjava.bean;
 
 public class Data<T> {
     private int errorCode;
-    private Object errorMsg;
+    private String errorMsg;
     private T data;
 
     public int getErrorCode() {
@@ -13,11 +13,11 @@ public class Data<T> {
         this.errorCode = errorCode;
     }
 
-    public Object getErrorMsg() {
+    public String getErrorMsg() {
         return errorMsg;
     }
 
-    public void setErrorMsg(Object errorMsg) {
+    public void setErrorMsg(String errorMsg) {
         this.errorMsg = errorMsg;
     }
 

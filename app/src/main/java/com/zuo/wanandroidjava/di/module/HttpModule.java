@@ -1,4 +1,4 @@
-package com.zuo.wanandroidjava.da.module;
+package com.zuo.wanandroidjava.di.module;
 
 import android.content.Context;
 import android.util.Log;

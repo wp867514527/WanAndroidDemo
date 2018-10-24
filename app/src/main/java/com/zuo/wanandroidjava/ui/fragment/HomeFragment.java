@@ -201,6 +201,7 @@ public class HomeFragment extends BaseFragment<HomePresenter> implements HomeCon
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.img_search:
+                ARouterHelper.jumpSearch();
                 break;
             case R.id.img_zx:
                 startActivity(new Intent(getContext(), CaptureActivity.class));
