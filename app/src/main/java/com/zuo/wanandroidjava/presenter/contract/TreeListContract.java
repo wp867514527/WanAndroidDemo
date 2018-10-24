@@ -7,6 +7,10 @@ public interface TreeListContract {
 
     interface IPresenter{
        void getDatas(int cid);
+
+        void onRefresh(int cid);
+
+        void onLoadMore(int cid);
     }
 
     interface IView extends BaseView{

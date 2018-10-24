@@ -20,6 +20,7 @@ import com.zuo.wanandroidjava.R;
 import com.zuo.wanandroidjava.base.BaseFragment;
 import com.zuo.wanandroidjava.bean.Article;
 import com.zuo.wanandroidjava.bean.Banner;
+import com.zuo.wanandroidjava.helper.ARouterHelper;
 import com.zuo.wanandroidjava.presenter.contract.HomeContract;
 import com.zuo.wanandroidjava.presenter.HomePresenter;
 import com.zuo.wanandroidjava.ui.adapter.HomeAdapter;
@@ -84,10 +85,11 @@ public class HomeFragment extends BaseFragment<HomePresenter> implements HomeCon
         homeAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                ARouter.getInstance()
-                        .build("/zuo/webActivity")
+               /* ARouter.getInstance()
+                        .build()
                         .withString("url",mItemDatas.get(position).getLink())
-                        .navigation();
+                        .navigation();*/
+                ARouterHelper.jumpWeb(mItemDatas.get(position).getLink());
 
 
             }
