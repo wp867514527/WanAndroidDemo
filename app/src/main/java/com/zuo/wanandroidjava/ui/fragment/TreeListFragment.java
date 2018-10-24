@@ -18,6 +18,7 @@ import com.zuo.wanandroidjava.bean.TreeList;
 import com.zuo.wanandroidjava.helper.ARouterHelper;
 import com.zuo.wanandroidjava.presenter.TreeListPresenter;
 import com.zuo.wanandroidjava.presenter.contract.TreeListContract;
+import com.zuo.wanandroidjava.ui.act.TreeActivity;
 import com.zuo.wanandroidjava.ui.adapter.TreeListAdapter;
 import com.zuo.wanandroidjava.weight.MultiStateView;
 
@@ -69,7 +70,14 @@ public class TreeListFragment extends BaseFragment<TreeListPresenter> implements
             ARouterHelper.jumpWeb(mItemDatas.get(pos).getLink());
 
         });
+        ((TreeActivity) getActivity()).getAppbarlayout().addOnOffsetChangedListener(((appBarLayout, verticalOffset) -> {
+            if (verticalOffset == 0) {
+                srlTreeList.setEnableRefresh(true);
+            } else {
+                srlTreeList.setEnableRefresh(false);
+            }
 
+        }));
     }
 
 
@@ -88,6 +96,11 @@ public class TreeListFragment extends BaseFragment<TreeListPresenter> implements
             adapter.replaceData(datas);
         } else {
             adapter.addData(datas);
+        }
+        if (datas.size() < 10) {
+            srlTreeList.setEnableLoadMore(false);
+        }else{
+            srlTreeList.setEnableLoadMore(true);
         }
     }
 

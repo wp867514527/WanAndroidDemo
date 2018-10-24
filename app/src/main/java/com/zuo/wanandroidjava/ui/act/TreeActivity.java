@@ -1,6 +1,7 @@
 package com.zuo.wanandroidjava.ui.act;
 
 import android.os.Bundle;
+import android.support.design.widget.AppBarLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -13,7 +14,6 @@ import com.alibaba.android.arouter.launcher.ARouter;
 import com.flyco.tablayout.SlidingTabLayout;
 import com.zuo.wanandroidjava.R;
 import com.zuo.wanandroidjava.base.BaseActivity;
-import com.zuo.wanandroidjava.bean.Data;
 import com.zuo.wanandroidjava.bean.Tree;
 import com.zuo.wanandroidjava.ui.fragment.TreeListFragment;
 import com.zuo.wanandroidjava.weight.SlideViewPager;
@@ -34,7 +34,9 @@ public class TreeActivity extends BaseActivity {
     SlideViewPager viewpager;
     @BindView(R.id.toolbar)
     Toolbar toolbar;
-     private List<String> mTitle = new ArrayList<>();
+    @BindView(R.id.appbarlayout)
+    AppBarLayout appbarlayout;
+    private List<String> mTitle = new ArrayList<>();
     protected List<Integer> ids = new ArrayList<>();
     private String TAG = "TreeActivity";
 
@@ -66,6 +68,9 @@ public class TreeActivity extends BaseActivity {
         tablacyout.setViewPager(viewpager, strings);
     }
 
+    public AppBarLayout getAppbarlayout() {
+        return appbarlayout;
+    }
 
     class TreeAdapter extends FragmentPagerAdapter {
 
