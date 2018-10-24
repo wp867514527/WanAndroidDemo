@@ -1,5 +1,7 @@
 package com.zuo.wanandroidjava.ui.fragment;
 
+import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -9,7 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
-import com.alibaba.android.arouter.launcher.ARouter;
+import com.aloe.zxlib.activity.CaptureActivity;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.jaeger.library.StatusBarUtil;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
@@ -21,15 +23,18 @@ import com.zuo.wanandroidjava.base.BaseFragment;
 import com.zuo.wanandroidjava.bean.Article;
 import com.zuo.wanandroidjava.bean.Banner;
 import com.zuo.wanandroidjava.helper.ARouterHelper;
-import com.zuo.wanandroidjava.presenter.contract.HomeContract;
 import com.zuo.wanandroidjava.presenter.HomePresenter;
+import com.zuo.wanandroidjava.presenter.contract.HomeContract;
 import com.zuo.wanandroidjava.ui.adapter.HomeAdapter;
 import com.zuo.wanandroidjava.util.GlideImageLoader;
+import com.zuo.wanandroidjava.weight.MultiStateView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 import butterknife.Unbinder;
 import io.reactivex.annotations.NonNull;
 
@@ -44,18 +49,22 @@ public class HomeFragment extends BaseFragment<HomePresenter> implements HomeCon
     LinearLayout llTop;
     @BindView(R.id.v_top_2)
     View vTop2;
-    @BindView(R.id.img_a)
+    @BindView(R.id.img_zx)
     ImageView imgA;
     @BindView(R.id.rv_home)
     RecyclerView rvHome;
     @BindView(R.id.srl_home)
     SmartRefreshLayout srlHome;
     Unbinder unbinder;
+    @BindView(R.id.multistateview)
+    MultiStateView multistateview;
+    Unbinder unbinder1;
     private HomeAdapter homeAdapter;
     private List<Article.DatasBean> mItemDatas = new ArrayList<>();
     private com.youth.banner.Banner banner;
     private String TAG = "HomeFragment";
     public boolean isLight = true;
+
     @Override
     public int getLayoutId() {
         return R.layout.fragment_home;
@@ -125,7 +134,7 @@ public class HomeFragment extends BaseFragment<HomePresenter> implements HomeCon
                 if (percent > 0.2) {
                     isLight = true;
                     StatusBarUtil.setLightMode(getActivity());
-                }else {
+                } else {
                     isLight = false;
                     StatusBarUtil.setDarkMode(getActivity());
 
@@ -148,8 +157,6 @@ public class HomeFragment extends BaseFragment<HomePresenter> implements HomeCon
             view[i].setLayoutParams(layoutParams);
         }
     }
-
-
 
 
     @Override
@@ -180,7 +187,7 @@ public class HomeFragment extends BaseFragment<HomePresenter> implements HomeCon
             srlHome.finishRefresh(success);
             if (success) {
                 showContentView();
-            }else {
+            } else {
                 showErrorView();
             }
         } else {
@@ -190,4 +197,14 @@ public class HomeFragment extends BaseFragment<HomePresenter> implements HomeCon
     }
 
 
+    @OnClick({R.id.img_search, R.id.img_zx})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.img_search:
+                break;
+            case R.id.img_zx:
+                startActivity(new Intent(getContext(), CaptureActivity.class));
+                break;
+        }
+    }
 }
