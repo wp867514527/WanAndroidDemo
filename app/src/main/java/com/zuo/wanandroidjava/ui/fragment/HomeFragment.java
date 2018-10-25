@@ -1,7 +1,6 @@
 package com.zuo.wanandroidjava.ui.fragment;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -33,7 +32,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
 import io.reactivex.annotations.NonNull;
@@ -72,6 +70,7 @@ public class HomeFragment extends BaseFragment<HomePresenter> implements HomeCon
 
     @Override
     public void initInject() {
+        //上传测试哈哈哈哈哈哈哈哈啊哈哈哈哈
         //上传测试哈哈哈哈哈哈哈哈啊哈哈哈哈
         getComponent().inject(this);
     }
