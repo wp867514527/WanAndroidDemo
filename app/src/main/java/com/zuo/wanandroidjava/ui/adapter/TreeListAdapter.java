@@ -2,6 +2,7 @@ package com.zuo.wanandroidjava.ui.adapter;
 
 import android.support.annotation.Nullable;
 
+import com.aloe.zxlib.utils.TimeUtils;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.zuo.wanandroidjava.R;
@@ -23,6 +24,6 @@ public class TreeListAdapter extends BaseQuickAdapter<TreeList.DataBean.DatasBea
         helper.setText(R.id.tv_title, item.getTitle());
         helper.setText(R.id.tv_content, item.getDesc());
         helper.setText(R.id.tv_author, item.getAuthor());
-        helper.setText(R.id.tv_time, item.getPublishTime()+"");
+        helper.setText(R.id.tv_time, TimeUtils.getTimestampString(item.getPublishTime()));
     }
 }

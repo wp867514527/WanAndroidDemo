@@ -96,7 +96,7 @@ public class SearchActivity extends BaseActivity<SearchPresneter> implements Sea
             Field mSearchSrcTextView = aClass.getDeclaredField("mSearchSrcTextView");
             mSearchSrcTextView.setAccessible(true); //取消 java 访问权限检查
             SearchView.SearchAutoComplete searchAutoComplete = (SearchView.SearchAutoComplete) mSearchSrcTextView.get(searchView);
-            RxTextView.textChanges(searchAutoComplete).debounce(100, TimeUnit.MILLISECONDS)  //坑比框架，既然不是主线程
+            RxTextView.textChanges(searchAutoComplete).debounce(1, TimeUnit.SECONDS)  //坑比框架，既然不是主线程
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(s -> {
                                 Log.d(TAG, "数据==" + s);
@@ -113,18 +113,6 @@ public class SearchActivity extends BaseActivity<SearchPresneter> implements Sea
             e.printStackTrace();
         }
 
-      /*  searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String s) {
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String s) {
-
-                return false;
-            }
-        });*/
 
         return super.onCreateOptionsMenu(menu);
     }

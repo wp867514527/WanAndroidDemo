@@ -3,6 +3,9 @@ package com.zuo.wanandroidjava.di.module;
 import android.content.Context;
 import android.util.Log;
 
+import com.franmontiel.persistentcookiejar.PersistentCookieJar;
+import com.franmontiel.persistentcookiejar.cache.SetCookieCache;
+import com.franmontiel.persistentcookiejar.persistence.SharedPrefsCookiePersistor;
 import com.zuo.wanandroidjava.model.api.Filed;
 import com.zuo.wanandroidjava.model.api.HttpApi;
 import com.zuo.wanandroidjava.model.api.HttpHelper;
@@ -14,6 +17,7 @@ import javax.inject.Singleton;
 import dagger.Module;
 import dagger.Provides;
 import okhttp3.Cache;
+import okhttp3.CookieJar;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
@@ -30,15 +34,23 @@ public class HttpModule {
     private final Context context;
 
     public HttpModule(final Context context) {
-        this.context =context;
+        this.context = context;
     }
+
+    @Provides
+    public final PersistentCookieJar providerCookieJar() {
+        return new PersistentCookieJar(new SetCookieCache(), new SharedPrefsCookiePersistor(context));
+    }
+
     @Provides
     @Singleton
-    public OkHttpClient.Builder providerOkHttpBuild() {
+    public OkHttpClient.Builder providerOkHttpBuild(PersistentCookieJar cookieJar) {
 
         return new OkHttpClient.Builder()
                 .cache(new Cache(new File(context.getCacheDir(), HTTP_TAG), CACHE_MAX))
-                .addInterceptor(new HttpLoggingInterceptor(message -> Log.d(HTTP_TAG,message)).setLevel(HttpLoggingInterceptor.Level.BODY));
+                .cookieJar(cookieJar)
+                .addInterceptor(new CacheInterceptor())
+                .addInterceptor(new HttpLoggingInterceptor(message -> Log.d(HTTP_TAG, message)).setLevel(HttpLoggingInterceptor.Level.BODY));
     }
 
     @Provides
@@ -51,13 +63,14 @@ public class HttpModule {
 
     @Provides
     @Singleton
-    public HttpApi providerHttpApi(Retrofit.Builder builder,OkHttpClient.Builder httpBuilder) {
+    public HttpApi providerHttpApi(Retrofit.Builder builder, OkHttpClient.Builder httpBuilder) {
 
         return builder
                 .client(httpBuilder.build())
                 .baseUrl(Filed.BASE_URL)
                 .build().create(HttpApi.class);
     }
+
     @Provides
     @Singleton
     public HttpHelper providerHttpHeplper(HttpApi httpApi) {

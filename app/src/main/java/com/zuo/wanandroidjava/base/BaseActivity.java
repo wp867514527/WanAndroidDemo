@@ -1,5 +1,7 @@
 package com.zuo.wanandroidjava.base;
 
+import android.content.Context;
+import android.content.pm.ActivityInfo;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -25,6 +27,7 @@ public abstract class BaseActivity <P extends BasePresenter> extends SupportActi
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(getLayoutId());
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         ButterKnife.bind(this);
         getWindow().setBackgroundDrawable(new ColorDrawable(ContextCompat
                 .getColor(this, R.color.act_bg)));
