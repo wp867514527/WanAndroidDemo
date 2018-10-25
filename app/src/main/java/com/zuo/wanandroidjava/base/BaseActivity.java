@@ -13,13 +13,14 @@ import com.zuo.wanandroidjava.R;
 import com.zuo.wanandroidjava.di.component.ActivityComponent;
 import com.zuo.wanandroidjava.di.component.DaggerActivityComponent;
 import com.zuo.wanandroidjava.di.module.ActModule;
+import com.zuo.wanandroidjava.util.ToastUtils;
 
 import javax.inject.Inject;
 
 import butterknife.ButterKnife;
 import me.yokeyword.fragmentation.SupportActivity;
 
-public abstract class BaseActivity <P extends BasePresenter> extends SupportActivity implements IBase,BaseView {
+public abstract class BaseActivity<P extends BasePresenter> extends SupportActivity implements IBase, BaseView {
     @Inject
     protected P presenter;
 
@@ -65,4 +66,18 @@ public abstract class BaseActivity <P extends BasePresenter> extends SupportActi
     public void showContentView() {
 
     }
+
+    long time = 0;
+
+    @Override
+    public void onBackPressedSupport() {
+        long millis = System.currentTimeMillis();
+        if (millis - time > 2000) {
+            time = millis;
+            ToastUtils.showCenterToast("长得丑的需要点俩次");
+            return;
+        }
+        super.onBackPressedSupport();
+    }
+
 }
