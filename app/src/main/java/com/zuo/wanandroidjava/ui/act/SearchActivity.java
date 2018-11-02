@@ -11,6 +11,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
+
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.jakewharton.rxbinding2.widget.RxTextView;
 import com.zuo.wanandroidjava.R;
@@ -26,10 +27,8 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
-import java.util.concurrent.TimeoutException;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 
 //https://mp.weixin.qq.com/s?__biz=MzAxMTI4MTkwNQ==&mid=2650823105&idx=1&sn=3989787daac29f098525f124a2cbb94d&chksm=80b78d5fb7c00449a26980f199d69aa83b40fc3b5e1a2f11bad08ba914fca451decc7ed68ffa&scene=38#wechat_redirect
@@ -54,6 +53,7 @@ public class SearchActivity extends BaseActivity<SearchPresneter> implements Sea
 
     @Override
     public void initInject() {
+
         getComponent().inject(this);
     }
 

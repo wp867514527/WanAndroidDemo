@@ -1,11 +1,9 @@
 package com.zuo.wanandroidjava.base;
 
-import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 
 import com.zuo.wanandroidjava.BaseApp;
@@ -41,6 +39,7 @@ public abstract class BaseActivity<P extends BasePresenter> extends SupportActiv
     }
 
     public static ActivityComponent getComponent() {
+
         return DaggerActivityComponent.builder()
                 .appComponent(BaseApp.getAppComponent())
                 .actModule(new ActModule())

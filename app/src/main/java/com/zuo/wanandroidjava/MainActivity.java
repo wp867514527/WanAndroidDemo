@@ -1,7 +1,5 @@
 package com.zuo.wanandroidjava;
 
-import android.os.AsyncTask;
-import android.os.Bundle;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.view.ViewPager;
 
@@ -11,11 +9,11 @@ import com.zuo.wanandroidjava.base.BaseActivity;
 import com.zuo.wanandroidjava.base.BaseFragment;
 import com.zuo.wanandroidjava.ui.fragment.HomeFragment;
 import com.zuo.wanandroidjava.ui.fragment.KnowFragment;
+import com.zuo.wanandroidjava.ui.fragment.MineFragment;
 import com.zuo.wanandroidjava.ui.fragment.ProjectFragment;
 import com.zuo.wanandroidjava.weight.SlideViewPager;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class MainActivity extends BaseActivity {
 
@@ -42,7 +40,7 @@ public class MainActivity extends BaseActivity {
                 new HomeFragment(),
                 new KnowFragment(),
                 new ProjectFragment(),
-                new HomeFragment()
+                new MineFragment()
         );
         slideViewPager.setAdapter(new StatePageAdapter(getSupportFragmentManager(), fragments));
         ImmutableList<Integer> itemIds = ImmutableList.of(R.id.tab_main_home, R.id.tab_main_know, R.id.tab_main_project, R.id.tab_main_mine);

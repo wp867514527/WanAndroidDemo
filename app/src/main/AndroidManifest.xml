@@ -26,6 +26,9 @@
             android:screenOrientation="portrait" />
         <activity android:name=".ui.act.TreeActivity" />
         <activity android:name=".ui.act.SearchActivity"></activity>
+        <activity android:name=".ui.act.Login_RegistActivity"/>
+        <!--<activity android:name=".ui.act.AboutActivity"/>-->
+        <!--<activity android:name=".ui.act.ShoucangActivity"/>-->
     </application>
 
 </manifest>

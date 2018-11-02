@@ -7,6 +7,7 @@ import com.zuo.wanandroidjava.bean.ProjectList;
 import com.zuo.wanandroidjava.bean.ProjectTab;
 import com.zuo.wanandroidjava.bean.Tree;
 import com.zuo.wanandroidjava.bean.TreeList;
+import com.zuo.wanandroidjava.bean.User;
 
 import java.util.List;
 
@@ -49,5 +50,25 @@ public interface HttpApi {
     @POST("/article/query/{page}/json")
     @FormUrlEncoded
     Observable<Data<Article>> getSearchArticle(@Path("page") int page, @Field("k") String k);
+
+    //登陆
+    //http://www.wanandroid.com/user/login
+    @POST("user/login")
+    @FormUrlEncoded
+    Observable<Data<User>> login(@Field("username") String username,
+                                 @Field("password") String password);
+
+    //注册
+    //http://www.wanandroid.com/user/register
+    @POST("user/register")
+    @FormUrlEncoded
+    Observable<Data<User>> register(@Field("username") String username,
+                                    @Field("password") String password,
+                                    @Field("repassword") String repassword);
+
+    //退出登陆 http://www.wanandroid.com/user/logout/json
+
+    @GET("user/logout/json")
+    Observable<User> logout();
 
 }

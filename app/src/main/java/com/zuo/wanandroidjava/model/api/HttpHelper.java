@@ -7,13 +7,11 @@ import com.zuo.wanandroidjava.bean.ProjectList;
 import com.zuo.wanandroidjava.bean.ProjectTab;
 import com.zuo.wanandroidjava.bean.Tree;
 import com.zuo.wanandroidjava.bean.TreeList;
+import com.zuo.wanandroidjava.bean.User;
 
 import java.util.List;
 
-import javax.inject.Inject;
-
 import io.reactivex.Observable;
-import io.reactivex.ObservableSource;
 import io.reactivex.ObservableTransformer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
@@ -68,10 +66,16 @@ public class HttpHelper {
                     if (tHttpResult.getErrorCode() >= 0) {
                         return createData(tHttpResult.getData());
                     } else {
-                        return Observable.error(new ApiException(tHttpResult.getErrorCode()+"", tHttpResult.getErrorMsg()));
+                        return Observable.error(new ApiException(tHttpResult.getErrorCode() + "", tHttpResult.getErrorMsg()));
                     }
                 });
     }
+
+    private <T> ObservableTransformer<T, T> mainThread() {
+        return upstream -> upstream.subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
 
     private <T> Observable<T> createData(T data) {
         return Observable.create(emitter -> {
@@ -80,8 +84,21 @@ public class HttpHelper {
         });
     }
 
-    private <T> ObservableTransformer<T, T> mainThread() {
-        return upstream -> upstream.subscribeOn(Schedulers.newThread())
-                .observeOn(AndroidSchedulers.mainThread());
+
+    //注册
+    public Observable<User> register(String userName, String password, String repassword) {
+        return httpApi.register(userName, password, repassword).compose(handHttp());
     }
+
+
+    //登陆
+    public Observable<User> ogin(String userName, String password) {
+        return httpApi.login(userName, password).compose(handHttp());
+    }
+
+    //退出登陆
+    public Observable<User> logout() {
+        return httpApi.logout().compose(mainThread());
+    }
+
 }

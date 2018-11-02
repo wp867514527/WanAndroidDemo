@@ -20,13 +20,11 @@ public class StatePageAdapter<T extends BaseFragment> extends FragmentStatePager
     @Override
     public Fragment getItem(int i) {
         return data.get(i);
-
     }
-
 
     @Override
     public int getCount() {
-        return data==null ? 0 : data.size();
+        return data == null ? 0 : data.size();
     }
 
 }
